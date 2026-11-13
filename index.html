@@ -85,6 +85,12 @@
             snake.unshift({ x: uusiX, y: uusiY });
             snake.pop();
             drawGame();
+
+
+            if (uusiX === food.x && uusiY === food.y) {
+                score++;
+                document.getElementById("info").textContent = "Score: " + score; luoRuoka();
+            }
         };
         
         setInterval(moveSnake, 200);
@@ -100,8 +106,18 @@
             document.addEventListener("keydown", handleKeydown);
         
         // pisteen syöminen ja kasvaminen
-            
-
+        const luoRuoka = () => {
+            let uusiRuoka;
+            do {
+                uusiRuoka = {
+                    x: Math.floor(Math.random() * tileCount),
+                    y: Math.floor(Math.random() * tileCount)
+                };
+            } while (snake.some(segment => segment.x === uusiRuoka.x && segment.y === uusiRuoka.y));
+           food = uusiRuoka; 
+           
+           
+        };
     </script>
 
 </body>
