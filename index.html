@@ -83,7 +83,7 @@
             const uusiY = snake[0].y + direction.y
             
             snake.unshift({ x: uusiX, y: uusiY });
-
+            document.getElementById("info").textContent = "Score: 0";
 
             if (uusiX === food.x && uusiY === food.y) {
                 score++;
