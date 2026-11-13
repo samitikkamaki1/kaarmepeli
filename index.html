@@ -83,14 +83,15 @@
             const uusiY = snake[0].y + direction.y
             
             snake.unshift({ x: uusiX, y: uusiY });
-            snake.pop();
-            drawGame();
 
 
             if (uusiX === food.x && uusiY === food.y) {
                 score++;
                 document.getElementById("info").textContent = "Score: " + score; luoRuoka();
+            } else {
+                snake.pop();
             }
+            drawGame();
         };
         
         setInterval(moveSnake, 200);
