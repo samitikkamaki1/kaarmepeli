@@ -77,14 +77,24 @@
         // ===================================
         
         // liikkumislooppi
+        let gameOver = false;
         const moveSnake = () => {
+            if (gameOver) return;
             
             const uusiX = snake[0].x + direction.x
             const uusiY = snake[0].y + direction.y
             
-            snake.unshift({ x: uusiX, y: uusiY });
-            document.getElementById("info").textContent = "Score: 0";
 
+            if  ( uusiX < 0 || uusiX >= tileCount ||
+                uusiY < 0 || uusiY >= tileCount ||
+                    snake.some((segment, index) => index !== 0 && segment.x == uusiX && segment.y == uusiY)){ 
+                gameOver = true;
+                clearInterval(gameLoop);
+                document.getElementById("info").textContent = "Game Over! Score: " + score;
+                return;
+                }
+               
+            snake.unshift({x: uusiX, y: uusiY});
             if (uusiX === food.x && uusiY === food.y) {
                 score++;
                 document.getElementById("info").textContent = "Score: " + score; luoRuoka();
@@ -93,8 +103,7 @@
             }
             drawGame();
         };
-        
-        setInterval(moveSnake, 200);
+        let gameLoop = setInterval (moveSnake, 200);
         
         //näppäimistöohjaus kaarmeelle
         const handleKeydown = (event) => {
@@ -117,7 +126,7 @@
             } while (snake.some(segment => segment.x === uusiRuoka.x && segment.y === uusiRuoka.y));
            food = uusiRuoka; 
            
-           
+
         };
     </script>
 
