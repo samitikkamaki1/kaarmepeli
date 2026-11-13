@@ -76,7 +76,13 @@
         //
         // ===================================
         const moveSnake = () => {
-
+            
+            const uusiX = snake[0].x + direction.x
+            const uusiY = snake[0].y + direction.y
+            
+            snake.unshift({ x: uusiX, y: uusiY });
+            snake.pop();
+            drawGame();
         };
         
         setInterval(moveSnake, 200);
