@@ -89,10 +89,12 @@
         
         setInterval(moveSnake, 200);
         
-        //näppäimistöohjaus
+        //näppäimistöohjaus kaarmeelle
         const handleKeydown = (event) => {
             if (event.key === "ArrowUp" && direction.y !== 1) direction = {x: 0, y: -1};
             else if (event.key === "ArrowDown" && direction.y !== -1) direction = {x: 0, y: 1};
+            else if (event.key === "ArrowLeft" && direction.x !== 1) direction = {x: -1, y: 0};
+            else if (event.key === "ArrowRight" && direction.x !== -1) direction = {x: 1, y: 0};
         }
 
             document.addEventListener("keydown", handleKeydown);
