@@ -89,7 +89,7 @@
 
             if  ( uusiX < 0 || uusiX >= tileCount ||
                 uusiY < 0 || uusiY >= tileCount ||
-                    snake.some((segment, index) => index !== 0 && segment.x == uusiX && segment.y == uusiY)){ 
+                    snake.slice(0, -1).some((segment, index) => index !== 0 && segment.x == uusiX && segment.y == uusiY)){ 
                 gameOver = true;
                 clearInterval(gameLoop);
                 document.getElementById("info").textContent = "Game Over! Score: " + score;
